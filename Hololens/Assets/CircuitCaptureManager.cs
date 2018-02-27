@@ -3,7 +3,7 @@ using UnityEngine.XR.WSA.WebCam;
 using HoloToolkit.Unity.InputModule;
 
 public class CircuitCaptureManager : MonoBehaviour {
-    public int imageCount = 0;
+    static public int imageCount = 0;
 
     PhotoCapture photoCaptureObject = null;
     Texture2D targetTexture = null;
@@ -61,10 +61,10 @@ public class CircuitCaptureManager : MonoBehaviour {
         //}
         //possibly display image here?
         //displayObject.DisplayCircuit(imageCount - 1);
-        //photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
+        photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
     }
 
-        void Update () {
+    void Update () {
 		
 	}
 
