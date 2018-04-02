@@ -692,6 +692,8 @@ GameObject:
   - component: {fileID: 629172091}
   - component: {fileID: 629172094}
   - component: {fileID: 629172093}
+  - component: {fileID: 629172096}
+  - component: {fileID: 629172095}
   m_Layer: 0
   m_Name: CaptureManager
   m_TagString: CaptureManager
@@ -771,7 +773,73 @@ MonoBehaviour:
   Keywords:
   - Keyword: circuit capture
     KeyCode: 0
+  - Keyword: set voltage five
+    KeyCode: 0
+  - Keyword: set r1 1 kilo ohm
+    KeyCode: 0
   recognitionConfidenceLevel: 1
+--- !u!114 &629172095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 629172090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d6513c2cdf97f409654a2a4114d9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Keywords:
+  - Keyword: set r1 1 kilo ohm
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1416248268}
+          m_MethodName: SetR1oneK
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  IsGlobalListener: 1
+  PersistentKeywords: 1
+--- !u!114 &629172096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 629172090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d6513c2cdf97f409654a2a4114d9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Keywords:
+  - Keyword: set voltage five
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1416248268}
+          m_MethodName: SetVoltageFive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  IsGlobalListener: 1
+  PersistentKeywords: 1
 --- !u!1001 &784742361
 Prefab:
   m_ObjectHideFlags: 0
