@@ -42,13 +42,11 @@ public class DisplayManager : MonoBehaviour
 
         byte[] rawimage = File.ReadAllBytes(filePath);
 
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        foreach (byte b in rawimage)
-        {
-            sb.Append(b);
-        }
-        //t.text = sb.ToString();
-        t.text = "we did it";
+        //System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        //foreach (byte b in rawimage)
+        //{
+        //    sb.Append(b);
+        //}
 
         circuitImage = new Texture2D(4, 4);
         circuitImage.LoadImage(rawimage);

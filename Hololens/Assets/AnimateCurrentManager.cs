@@ -13,14 +13,6 @@ public class AnimateCurrentManager : MonoBehaviour {
     [Range(0f, 1f)]
     float Period = 0.5f;
 
-
-    //void SetPoints(...) // use normalized coordinates
-    //{
-    //    PointTransforms =... // insantate new game objects
-    //    pt.parent = planeObj.transform; // parent them to the plane
-    //    pt.localPosition = ...
-    //}
-
     void SetLocalPoints(IEnumerable<Vector3> local_points)
     {
         int node_number = 1;
@@ -34,12 +26,7 @@ public class AnimateCurrentManager : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
 	IEnumerator Start () {
-        //trailObj.transform.parent = planeObj.transform;
-        //trailObj.transform.position = planeObj.transform.position;
-        //trailObj.transform.SetParent(planeObj.transform, false);
-        //Hashtable ht = new Hashtable();
 
         Hashtable opts = new Hashtable();
         for (; ;)
@@ -59,17 +46,6 @@ public class AnimateCurrentManager : MonoBehaviour {
                 yield return new WaitForSeconds(Period);
             }
         }
-
-        //iTween.MoveTo(trailObj, ht);
-        //Hashtable test = new Hashtable();
-
-
-        //test.Add("x", 5);
-        //iTween.MoveTo(trailObj, test);
-        //test.Add("x", planeObj.transform.right);
-        //test.Add("y", planeObj.transform.left);
-        //test.Add("z", planeObj.transform.up);
-        //iTween.MoveTo(trailObj, test);
     }
 	
 	// Update is called once per frame

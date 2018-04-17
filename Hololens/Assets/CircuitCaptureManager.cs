@@ -33,6 +33,10 @@ public class CircuitCaptureManager : MonoBehaviour {
             // Activate the camera
             photoCaptureObject.StartPhotoModeAsync(cameraParameters, delegate (PhotoCapture.PhotoCaptureResult result) {
                 string filename = string.Format(@"CircuitImage{0}.jpg", imageCount);
+                if(!System.IO.File.Exists(Application.persistentDataPath))
+                {
+                    System.IO.File.Create(Application.persistentDataPath);
+                }
                 string filePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
 
                 imageCount++;
