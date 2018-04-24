@@ -3,7 +3,7 @@ using UnityEngine.XR.WSA.WebCam;
 using HoloToolkit.Unity.InputModule;
 
 public class CircuitCaptureManager : MonoBehaviour {
-    static public int imageCount = 0;
+    //static public int imageCount = 0;
 
     PhotoCapture photoCaptureObject = null;
     Texture2D targetTexture = null;
@@ -11,12 +11,6 @@ public class CircuitCaptureManager : MonoBehaviour {
     [SerializeField]
     DisplayManager dsp = null;
     
-
-    // Use this for initialization
-    void Start () {
-        //displayObject = new DisplayManager();
-        //displayObject = GameObject.FindGameObjectWithTag("CaptureManager");
-    }
 
     public void CaptureCircuitAndSave()
     {
@@ -26,45 +20,32 @@ public class CircuitCaptureManager : MonoBehaviour {
             photoCaptureObject = captureObject;
             CameraParameters cameraParameters = new CameraParameters();
             cameraParameters.hologramOpacity = 0.0f;
-            cameraParameters.cameraResolutionWidth = 896;
-            cameraParameters.cameraResolutionHeight = 504;
+            cameraParameters.cameraResolutionWidth = 800;
+            cameraParameters.cameraResolutionHeight = 500;
             cameraParameters.pixelFormat = CapturePixelFormat.BGRA32;
 
             // Activate the camera
             photoCaptureObject.StartPhotoModeAsync(cameraParameters, delegate (PhotoCapture.PhotoCaptureResult result) {
-                string filename = string.Format(@"CircuitImage{0}.jpg", imageCount);
-                if(!System.IO.File.Exists(Application.persistentDataPath))
-                {
-                    System.IO.File.Create(Application.persistentDataPath);
-                }
-                string filePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
-
-                imageCount++;
+ 
                 // Take a picture
-                photoCaptureObject.TakePhotoAsync(filePath, PhotoCaptureFileOutputFormat.JPG, OnCapturedPhotoToDisk);
-                //OnCapturedPhotoToDisk(result);
+                photoCaptureObject.TakePhotoAsync(OnCapturedPhotoToMemory);
+
             });
         });
     }
 
-    void OnCapturedPhotoToDisk(PhotoCapture.PhotoCaptureResult result)
+    void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame)
     {
-        //photoCaptureFrame.UploadImageDataToTexture(targetTexture);
-        //byte[] rawData = targetTexture.GetRawTextureData();
+        if(result.success)
+        {
+            targetTexture = new Texture2D(800, 500);
 
-        //send via http here
-        Debug.Log("OnCapturedPhotoToDisk");
-        //if (displayObject.GetComponent<DisplayManager>() != null)
-        //{
-        //dsp = displayObject.GetComponent<DisplayManager>();
-        dsp.DisplayCircuit(imageCount - 1);
-        //}
-        //else if (dsp != null)
-        //{
-        //    dsp.DisplayCircuit(imageCount - 1);
-        //}
-        //possibly display image here?
-        //displayObject.DisplayCircuit(imageCount - 1);
+            // Copy the raw image data into our target texture
+            photoCaptureFrame.UploadImageDataToTexture(targetTexture);
+            dsp.DisplayCircuit(targetTexture);
+        }
+
+        // Deactivate our camera
         photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
     }
 

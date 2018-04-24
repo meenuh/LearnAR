@@ -9,6 +9,7 @@ public class DisplayManager : MonoBehaviour
 {
     [SerializeField]
     public Texture2D circuitImage;
+    [SerializeField]
     private RawImage img = null;
     [SerializeField]
     private TextMesh t;
@@ -27,34 +28,19 @@ public class DisplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetButtonDown("Fire1"))
-        //{
-        //    DisplayCircuit(0);
-        //}
-        //string filename = string.Format(@"CircuitImage{0}.jpg", circuitImageScript.imageCount - 1);
-        //string filePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+
     }
 
-    public void DisplayCircuit(int imageCount)
+    public void DisplayCircuit(Texture2D targetTexture)
     {
-        string filename = string.Format(@"CircuitImage{0}.jpg", imageCount);
-        string filePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+        img.texture = targetTexture;
+        //circuitImage = new Texture2D(4, 4);
+        //circuitImage.LoadImage(rawimage);
+        //frontPlane.mainTexture = circuitImage;
 
-        byte[] rawimage = File.ReadAllBytes(filePath);
-
-        //System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        //foreach (byte b in rawimage)
-        //{
-        //    sb.Append(b);
-        //}
-
-        circuitImage = new Texture2D(4, 4);
-        circuitImage.LoadImage(rawimage);
-        frontPlane.mainTexture = circuitImage;
-
-        // Apply to the plane
-        MeshRenderer renderer = plane.GetComponent<MeshRenderer>();
-        renderer.material = frontPlane;
+        //// Apply to the plane
+        //MeshRenderer renderer = plane.GetComponent<MeshRenderer>();
+        //renderer.material = frontPlane;
     }
 
     private void DisplayValues()
