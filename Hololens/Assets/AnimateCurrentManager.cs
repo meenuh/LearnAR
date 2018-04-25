@@ -26,12 +26,13 @@ public class AnimateCurrentManager : MonoBehaviour {
         }
     }
 
-	IEnumerator Start () {
+    IEnumerator Start()
+    {
 
         Hashtable opts = new Hashtable();
-        for (; ;)
+        for (; ; )
         {
-            foreach(var pt in PointTransforms)
+            foreach (var pt in PointTransforms)
             {
                 opts.Add("easetype", iTween.EaseType.linear);
                 var local_pos = pt.localPosition;
@@ -47,9 +48,9 @@ public class AnimateCurrentManager : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 

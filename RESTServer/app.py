@@ -19,22 +19,23 @@ def index():
     return "Hello World!"
 
 
-@app.route('/circuit/api/v1.0/image', methods=['GET'])
+@app.route('/circuit/image', methods=['GET'])
 def get_image():
     return jsonify({'images': images})
 
 
-@app.route('/circuit/api/v1.0/image', methods=['POST'])
+@app.route('/circuit/image', methods=['POST'])
 def post_image():
     # !if not request.json or not 'imageName' in request.json:
     # !abort(400)
-    image = {
-        'id': images[-1]['id'] + 1,
-        'imageName': request.json['imageName']
-    }
+    image = request.json['image']
 
-    images.append(image)
-    return jsonify({'image': image}), 201
+    # call yolo stuff here
+    # images.append(image)
+    print(image)
+
+    # we should NOT return the image back, but instead return the new jsonobject with 411 from YOLO
+    return jsonify({'image': 'it was sent'}), 201
 
 
 if __name__ == '__main__':
